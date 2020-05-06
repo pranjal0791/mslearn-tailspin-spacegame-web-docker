@@ -14,8 +14,6 @@ stages:
     displayName: 'Build job'
     pool:
       vmImage: 'ubuntu-16.04'
-    variables:
-    - group: Release
     steps:
     - task: Docker@2
       displayName: 'Build and push the image to container registry'
@@ -24,7 +22,7 @@ stages:
         buildContext: $(Build.Repository.LocalPath)
         repository: $(webRepository)
         dockerfile: '$(Build.SourcesDirectory)/Tailspin.SpaceGame.Web/Dockerfile'
-        containerRegistry: $(RegistryName)
+        containerRegistry: 'tailspinspacegame353.azurecr.io'
         tags: |
           $(tag)
 
